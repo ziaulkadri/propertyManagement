@@ -1,9 +1,8 @@
 import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions.js";
 import { join } from "path";
-import { registerAs } from "@nestjs/config";
 
 
-export default registerAs('dbconfig.dev', ():PostgresConnectionOptions => ({
+export default():PostgresConnectionOptions => ({
 
     //dont hardcode credentials in production, use environment variables or a secrets manager
 
@@ -11,6 +10,6 @@ export default registerAs('dbconfig.dev', ():PostgresConnectionOptions => ({
     type: "postgres",
     entities:[join(__dirname, '..', 'entities', '*.entity{.ts,.js}')],
     // in production, set synchronize to false and use migrations to manage your database schema
-    synchronize:true,
-    logging:true
-}));
+    synchronize:false,
+    logging:false
+});
